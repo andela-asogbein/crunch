@@ -1,70 +1,122 @@
 package com.andela.currencycalc;
 
+import android.app.Activity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 /**
  * Created by JIBOLA on 28-Sep-15.
  */
 public class ButtonHandler {
+    DisplayHandler displayHandler;
+    MathOperations mathOperations;
+
+    private Spinner operandSpinner;
+
+    private Spinner answerSpinner;
+    private ArrayAdapter<CharSequence> adapter;
+    private ArrayAdapter<CharSequence> adapter2;
+
+    public ButtonHandler(Activity activity){
+        displayHandler = new DisplayHandler(activity);
+        mathOperations = new MathOperations(displayHandler, this);
+
+        initialiseButtonsAndSpinners(activity);
+    }
 
     public void buttonClicked(int viewId) {
         switch(viewId){
-            //numbers and decimal
             case R.id.button0 :
-                addToDisplay("0");
+                displayHandler.addToDisplay("0");
                 break;
             case R.id.button1 :
-                addToDisplay("1");
+                displayHandler.addToDisplay("1");
                 break;
             case R.id.button2 :
-                addToDisplay("2");
+                displayHandler.addToDisplay("2");
                 break;
             case R.id.button3 :
-                addToDisplay("3");
+                displayHandler.addToDisplay("3");
                 break;
             case R.id.button4 :
-                addToDisplay("4");
+                displayHandler.addToDisplay("4");
                 break;
             case R.id.button5 :
-                addToDisplay("5");
+                displayHandler.addToDisplay("5");
                 break;
             case R.id.button6 :
-                addToDisplay("6");
+                displayHandler.addToDisplay("6");
                 break;
             case R.id.button7 :
-                addToDisplay("7");
+                displayHandler.addToDisplay("7");
                 break;
             case R.id.button8 :
-                addToDisplay("8");
+                displayHandler.addToDisplay("8");
                 break;
             case R.id.button9 :
-                addToDisplay("9");
+                displayHandler.addToDisplay("9");
                 break;
             case R.id.buttonPoint :
-                addToDisplay(".");
+                displayHandler.addToDisplay(".");
                 break;
-            //operators
             case R.id.buttonAdd :
-                setOperator("+");
+                mathOperations.setOperator("+");
                 break;
             case R.id.buttonSubtract :
-                setOperator("-");
+                mathOperations.setOperator("-");
                 break;
             case R.id.buttonMultiply :
-                setOperator("*");
+                mathOperations.setOperator("*");
                 break;
             case R.id.buttonDivide :
-                setOperator("/");
+                mathOperations.setOperator("/");
                 break;
-            //equals button
             case R.id.buttonEquals :
-                calculate();
-                startNewNumber = true;
-                firstOperand = 0f;
-                secondOperand = 0f;
-                operator = "";
+                mathOperations.calculate();
+                displayHandler.setStartNewNumber(true);
+                mathOperations.setFirstOperand(0f);
+                mathOperations.setSecondOperand(0f);
+                mathOperations.setOperator("");
                 break;
         }
     }
 
+    public Spinner getOperandSpinner() {
+        return operandSpinner;
+    }
+
+    public Spinner getAnswerSpinner() {
+        return answerSpinner;
+    }
+
+    private void initialiseButtonsAndSpinners(Activity activity) {
+        operandSpinner = (Spinner)activity.findViewById(R.id.spinner);
+        adapter = ArrayAdapter.createFromResource(activity, R.array.currencies,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        operandSpinner.setAdapter(adapter);
+        operandSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        answerSpinner = (Spinner)activity.findViewById(R.id.targetCurrency);
+        adapter2 = ArrayAdapter.createFromResource(activity, R.array.currencies,android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        answerSpinner.setAdapter(adapter2);
+        answerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
 }

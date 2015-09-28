@@ -12,7 +12,7 @@ import java.net.URL;
 /**
  * Created by JIBOLA on 28-Sep-15.
  */
-public class GetWebPageTask extends AsyncTask<String, Void, String> {
+public class GetExchangeRates extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... url) {
         return getWebsite(url[0]);
