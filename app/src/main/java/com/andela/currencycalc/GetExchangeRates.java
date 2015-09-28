@@ -15,10 +15,10 @@ import java.net.URL;
 public class GetExchangeRates extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... url) {
-        return getWebsite(url[0]);
+        return getRatesJson(url[0]);
     }
 
-    private String getWebsite(String address) {
+    private String getRatesJson(String address) {
         StringBuffer stringBuffer = new StringBuffer();
         BufferedReader reader = null;
 
