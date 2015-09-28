@@ -81,63 +81,65 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ButtonClickHandler(View v){
-        switch(v.getId()){
-            //numbers and decimal
-            case R.id.button0 :
-                addToDisplay("0");
-                break;
-            case R.id.button1 :
-                addToDisplay("1");
-                break;
-            case R.id.button2 :
-                addToDisplay("2");
-                break;
-            case R.id.button3 :
-                addToDisplay("3");
-                break;
-            case R.id.button4 :
-                addToDisplay("4");
-                break;
-            case R.id.button5 :
-                addToDisplay("5");
-                break;
-            case R.id.button6 :
-                addToDisplay("6");
-                break;
-            case R.id.button7 :
-                addToDisplay("7");
-                break;
-            case R.id.button8 :
-                addToDisplay("8");
-                break;
-            case R.id.button9 :
-                addToDisplay("9");
-                break;
-            case R.id.buttonPoint :
-                addToDisplay(".");
-                break;
-            //operators
-            case R.id.buttonAdd :
-                setOperator("+");
-                break;
-            case R.id.buttonSubtract :
-                setOperator("-");
-                break;
-            case R.id.buttonMultiply :
-                setOperator("*");
-                break;
-            case R.id.buttonDivide :
-                setOperator("/");
-                break;
-            //equals button
-            case R.id.buttonEquals :
-                calculate();
-                startNewNumber = true;
-                firstOperand = 0f;
-                secondOperand = 0f;
-                operator = "";
-                break;
-        }
+        ButtonHandler buttonHandler = new ButtonHandler();
+        buttonHandler.buttonClicked(v.getId());
+//        switch(v.getId()){
+//            //numbers and decimal
+//            case R.id.button0 :
+//                addToDisplay("0");
+//                break;
+//            case R.id.button1 :
+//                addToDisplay("1");
+//                break;
+//            case R.id.button2 :
+//                addToDisplay("2");
+//                break;
+//            case R.id.button3 :
+//                addToDisplay("3");
+//                break;
+//            case R.id.button4 :
+//                addToDisplay("4");
+//                break;
+//            case R.id.button5 :
+//                addToDisplay("5");
+//                break;
+//            case R.id.button6 :
+//                addToDisplay("6");
+//                break;
+//            case R.id.button7 :
+//                addToDisplay("7");
+//                break;
+//            case R.id.button8 :
+//                addToDisplay("8");
+//                break;
+//            case R.id.button9 :
+//                addToDisplay("9");
+//                break;
+//            case R.id.buttonPoint :
+//                addToDisplay(".");
+//                break;
+//            //operators
+//            case R.id.buttonAdd :
+//                setOperator("+");
+//                break;
+//            case R.id.buttonSubtract :
+//                setOperator("-");
+//                break;
+//            case R.id.buttonMultiply :
+//                setOperator("*");
+//                break;
+//            case R.id.buttonDivide :
+//                setOperator("/");
+//                break;
+//            //equals button
+//            case R.id.buttonEquals :
+//                calculate();
+//                startNewNumber = true;
+//                firstOperand = 0f;
+//                secondOperand = 0f;
+//                operator = "";
+//                break;
+//        }
     }
 
     public void addToDisplay(String userInput){
@@ -207,45 +209,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public class GetWebPageTask extends AsyncTask<String, Void, String>{
-
-        @Override
-        protected String doInBackground(String... url) {
-            return getWebsite(url[0]);
-        }
-    }
-
-    private String getWebsite(String address) {
-        StringBuffer stringBuffer = new StringBuffer();
-        BufferedReader reader = null;
-
-        try{
-            URL url = new URL(address);
-            HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
-            reader = new BufferedReader(new InputStreamReader(in));
-            String line = "";
-
-            while ((line  = reader.readLine()) != null){
-                stringBuffer.append(line);
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            if(reader != null){
-                try{
-                    reader.close();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }
-        return stringBuffer.toString();
     }
 }
