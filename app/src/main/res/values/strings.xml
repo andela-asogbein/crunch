@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CurrencyCalc</string>
+    <string name="app_name">Crunch</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -27,6 +27,15 @@
         <item>USD</item>
         <item>GBP</item>
         <item>EUR</item>
+        <item>AED</item>
+        <item>BRL</item>
+        <item>CAD</item>
+        <item>FJD</item>
+        <item>CZK</item>
+        <item>LAK</item>
+        <item>MTR</item>
 
     </string-array>
+    <string name="title_activity_top_ten">Top Ten Currencies</string>
+
 </resources>

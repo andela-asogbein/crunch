@@ -1,17 +1,17 @@
 package com.andela.currencycalc;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
-/**
- * Created by JIBOLA on 28-Sep-15.
- */
 public class ButtonHandler {
-    DisplayHandler displayHandler;
-    MathOperations mathOperations;
+    private final Activity activity;
+    private DisplayHandler displayHandler;
+    private MathOperations mathOperations;
 
     private Spinner operandSpinner;
 
@@ -20,67 +20,42 @@ public class ButtonHandler {
     private ArrayAdapter<CharSequence> adapter2;
 
     public ButtonHandler(Activity activity){
+        this.activity = activity;
         displayHandler = new DisplayHandler(activity);
         mathOperations = new MathOperations(displayHandler, this);
-
         initialiseButtonsAndSpinners(activity);
     }
 
-    public void buttonClicked(int viewId) {
-        switch(viewId){
-            case R.id.button0 :
-                displayHandler.addToDisplay("0");
-                break;
-            case R.id.button1 :
-                displayHandler.addToDisplay("1");
-                break;
-            case R.id.button2 :
-                displayHandler.addToDisplay("2");
-                break;
-            case R.id.button3 :
-                displayHandler.addToDisplay("3");
-                break;
-            case R.id.button4 :
-                displayHandler.addToDisplay("4");
-                break;
-            case R.id.button5 :
-                displayHandler.addToDisplay("5");
-                break;
-            case R.id.button6 :
-                displayHandler.addToDisplay("6");
-                break;
-            case R.id.button7 :
-                displayHandler.addToDisplay("7");
-                break;
-            case R.id.button8 :
-                displayHandler.addToDisplay("8");
-                break;
-            case R.id.button9 :
-                displayHandler.addToDisplay("9");
-                break;
-            case R.id.buttonPoint :
-                displayHandler.addToDisplay(".");
-                break;
-            case R.id.buttonAdd :
-                mathOperations.setOperator("+");
-                break;
-            case R.id.buttonSubtract :
-                mathOperations.setOperator("-");
-                break;
-            case R.id.buttonMultiply :
-                mathOperations.setOperator("*");
-                break;
-            case R.id.buttonDivide :
-                mathOperations.setOperator("/");
-                break;
-            case R.id.buttonEquals :
-                mathOperations.calculate();
-                displayHandler.setStartNewNumber(true);
-                mathOperations.setFirstOperand(0f);
-                mathOperations.setSecondOperand(0f);
-                mathOperations.setOperator("");
-                break;
-        }
+    public void numberButtonClicked(int viewId) {
+        Button button =  (Button)activity.findViewById(viewId);
+        String buttonText = button.getText().toString();
+        displayHandler.addToDisplay(buttonText);
+    }
+
+    public void operatorButtonClicked(int viewId){
+        Button button =  (Button)activity.findViewById(viewId);
+        String buttonText = button.getText().toString();
+        mathOperations.setOperator(buttonText);
+    }
+
+    public void decimalButtonClicked(int viewId){
+        Button button =  (Button)activity.findViewById(viewId);
+        String buttonText = button.getText().toString();
+        displayHandler.addDecimalToDisplay(buttonText);
+    }
+
+    public void deleteButtonClicked(int viewId){
+        Button button =  (Button)activity.findViewById(viewId);
+        String buttonText = button.getText().toString();
+        displayHandler.editDisplay();
+    }
+
+    public void equalsButtonClicked(){
+        mathOperations.calculate();
+        displayHandler.setStartNewNumber(true);
+        mathOperations.setFirstOperand(0f);
+        mathOperations.setSecondOperand(0f);
+        mathOperations.setOperator("");
     }
 
     public Spinner getOperandSpinner() {

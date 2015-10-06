@@ -3,9 +3,6 @@ package com.andela.currencycalc;
 import android.app.Activity;
 import android.widget.EditText;
 
-/**
- * Created by JIBOLA on 28-Sep-15.
- */
 public class DisplayHandler {
 
     private EditText display;
@@ -17,11 +14,31 @@ public class DisplayHandler {
 
     public void addToDisplay(String userInput){
         if (startNewNumber){
-            display.setText("");
+            clearScreen();
             startNewNumber = false;
         }
         display.append(userInput);
     }
+
+    public void editDisplay(){
+        String currentString = display.getText().toString();
+        if(currentString.length() > 0) {
+            String editedString = currentString.substring(0, currentString.length() - 1);
+            clearScreen();
+            display.append(editedString);
+        }
+    }
+
+    public void addDecimalToDisplay(String userInput){
+        if(!display.getText().toString().contains(".")){
+            display.append(userInput);
+        }
+    }
+
+    public void clearScreen(){
+        display.setText("");
+    }
+
 
     public EditText getDisplay(){
         return display;
