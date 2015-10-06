@@ -55,7 +55,6 @@ public class ButtonHandler {
         displayHandler.setStartNewNumber(true);
         mathOperations.setFirstOperand(0f);
         mathOperations.setSecondOperand(0f);
-        mathOperations.setOperator("");
     }
 
     public Spinner getOperandSpinner() {

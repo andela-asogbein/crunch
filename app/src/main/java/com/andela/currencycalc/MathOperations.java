@@ -32,11 +32,14 @@ public class MathOperations {
         operator = operatorCharacter;
 
         displayHandler.setStartNewNumber(true);
+        displayHandler.addToSecondDisplay(firstOperandCurrency, firstOperand, operator);
     }
 
     public void calculate() {
         secondOperand = Float.parseFloat(displayHandler.getDisplay().getText().toString());
         secondOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
+
+        displayHandler.addToSecondDisplayAgain(secondOperand, secondOperandCurrency);
 
         answerCurrency = buttonHandler.getAnswerSpinner().getSelectedItem().toString();
 
@@ -55,21 +58,28 @@ public class MathOperations {
 
             if (operator.equals("+")) {
                 answerInDollars =  firstOperandInDollars + secondOperandInDollars;
+                double answerInTargetCurrency = answerInDollars * targetRate;
+                displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
             }
             else if (operator.equals("-")){
                 answerInDollars =  firstOperandInDollars - secondOperandInDollars;
-            }
-            else if (operator.equals("*")){
-                answerInDollars =  firstOperandInDollars * secondOperandInDollars;
+                double answerInTargetCurrency = answerInDollars * targetRate;
+                displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
             }
             else if (operator.equals("/")) {
                 answerInDollars =  firstOperandInDollars / secondOperandInDollars;
+                double answerInTargetCurrency = answerInDollars;
+                displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
+            }
+            else if (operator.equals("x")){
+                float multiply =  firstOperand * secondOperand;
+                answerInDollars = multiply/targetRate;
+                double answerInTargetCurrency = answerInDollars * targetRate;
+                displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
             }
             else if (operator.equals("")){
                 answerInDollars = secondOperandInDollars;
             }
-            double answerInTargetCurrency = answerInDollars * targetRate;
-            displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
         } catch (Exception e) {
             e.printStackTrace();
         }
