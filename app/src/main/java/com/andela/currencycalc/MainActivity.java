@@ -2,11 +2,12 @@ package com.andela.currencycalc;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.andela.currencycalc.buttons.ButtonHandler;
 
 public class MainActivity extends AppCompatActivity {
 

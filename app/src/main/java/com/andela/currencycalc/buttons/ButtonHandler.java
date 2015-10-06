@@ -1,12 +1,15 @@
-package com.andela.currencycalc;
+package com.andela.currencycalc.buttons;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import com.andela.currencycalc.displays.DisplayHandler;
+import com.andela.currencycalc.math.MathOperations;
+import com.andela.currencycalc.R;
 
 public class ButtonHandler {
     private final Activity activity;

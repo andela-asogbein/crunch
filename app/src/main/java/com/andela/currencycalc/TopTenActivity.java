@@ -8,6 +8,10 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.andela.currencycalc.constants.Constants;
+import com.andela.currencycalc.exchangesRates.ExchangeRates;
+import com.andela.currencycalc.models.Currency;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -31,7 +35,7 @@ public class TopTenActivity extends AppCompatActivity {
 
     public void populateCurrencyList(){
         try {
-            String json = new GetExchangeRates().execute(Constants.exchangeRatesUrl).get();
+            String json = new ExchangeRates().execute(Constants.exchangeRatesUrl).get();
             JSONObject jsonObject = new JSONObject(json);
             JSONObject ratesObject = jsonObject.getJSONObject("rates");
             ArrayList<Currency> currencies = new ArrayList<Currency>();

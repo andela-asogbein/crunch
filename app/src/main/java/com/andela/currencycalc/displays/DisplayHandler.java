@@ -1,8 +1,10 @@
-package com.andela.currencycalc;
+package com.andela.currencycalc.displays;
 
 import android.app.Activity;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.andela.currencycalc.R;
 
 public class DisplayHandler {
 

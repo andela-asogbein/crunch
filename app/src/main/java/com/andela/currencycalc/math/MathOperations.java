@@ -1,4 +1,9 @@
-package com.andela.currencycalc;
+package com.andela.currencycalc.math;
+
+import com.andela.currencycalc.exchangesRates.ExchangeRates;
+import com.andela.currencycalc.buttons.ButtonHandler;
+import com.andela.currencycalc.constants.Constants;
+import com.andela.currencycalc.displays.DisplayHandler;
 
 import org.json.JSONObject;
 
@@ -44,7 +49,7 @@ public class MathOperations {
         answerCurrency = buttonHandler.getAnswerSpinner().getSelectedItem().toString();
 
         try {
-            String json = new GetExchangeRates().execute(Constants.exchangeRatesUrl).get();
+            String json = new ExchangeRates().execute(Constants.exchangeRatesUrl).get();
             JSONObject jsonObject = new JSONObject(json);
             JSONObject ratesObject = jsonObject.getJSONObject("rates");
 

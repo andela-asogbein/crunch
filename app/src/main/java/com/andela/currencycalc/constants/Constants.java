@@ -1,4 +1,4 @@
-package com.andela.currencycalc;
+package com.andela.currencycalc.constants;
 
 /**
  * Created by JIBOLA on 03-Oct-15.

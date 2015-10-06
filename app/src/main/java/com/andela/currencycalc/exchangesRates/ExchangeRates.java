@@ -1,4 +1,4 @@
-package com.andela.currencycalc;
+package com.andela.currencycalc.exchangesRates;
 
 import android.os.AsyncTask;
 
@@ -12,7 +12,7 @@ import java.net.URL;
 /**
  * Created by JIBOLA on 28-Sep-15.
  */
-public class GetExchangeRates extends AsyncTask<String, Void, String> {
+public class ExchangeRates extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... url) {
         return getRatesJson(url[0]);
