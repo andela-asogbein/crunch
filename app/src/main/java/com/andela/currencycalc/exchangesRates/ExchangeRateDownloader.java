@@ -12,7 +12,7 @@ import java.net.URL;
 /**
  * Created by JIBOLA on 28-Sep-15.
  */
-public class ExchangeRates extends AsyncTask<String, Void, String> {
+public class ExchangeRateDownloader extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... url) {
         return getRatesJson(url[0]);

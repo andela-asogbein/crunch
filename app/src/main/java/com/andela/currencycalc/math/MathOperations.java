@@ -1,9 +1,10 @@
 package com.andela.currencycalc.math;
 
-import com.andela.currencycalc.exchangesRates.ExchangeRates;
+import com.andela.currencycalc.exchangesRates.ExchangeRateDownloader;
 import com.andela.currencycalc.buttons.ButtonHandler;
 import com.andela.currencycalc.constants.Constants;
 import com.andela.currencycalc.displays.DisplayHandler;
+import com.andela.currencycalc.exchangesRates.Rates;
 
 import org.json.JSONObject;
 
@@ -23,7 +24,7 @@ public class MathOperations {
     private DisplayHandler displayHandler;
     private ButtonHandler buttonHandler;
 
-    private double answerInDollars = 0d;
+    private double answerInTargetCurrency = 0d;
 
     public MathOperations(DisplayHandler d, ButtonHandler b){
         displayHandler = d;
@@ -49,42 +50,31 @@ public class MathOperations {
         answerCurrency = buttonHandler.getAnswerSpinner().getSelectedItem().toString();
 
         try {
-            String json = new ExchangeRates().execute(Constants.exchangeRatesUrl).get();
-            JSONObject jsonObject = new JSONObject(json);
-            JSONObject ratesObject = jsonObject.getJSONObject("rates");
+            Rates rates = new Rates();
+            double targetRate =  rates.fetchRates().getDouble(answerCurrency);
 
-            double firstOperandRate = ratesObject.getDouble(firstOperandCurrency);
-            double firstOperandInDollars = firstOperand/firstOperandRate;
+            double firstOperandRate =  rates.fetchRates().getDouble(firstOperandCurrency);
+            double firstOperandInTargetCurrency = (firstOperand*targetRate)/firstOperandRate;
 
-            double secondOperandRate = ratesObject.getDouble(secondOperandCurrency);
-            double secondOperandInDollars = secondOperand/secondOperandRate;
-
-            double targetRate = ratesObject.getDouble(answerCurrency);
+            double secondOperandRate =  rates.fetchRates().getDouble(secondOperandCurrency);
+            double secondOperandInTargetCurrency = (secondOperand*targetRate)/secondOperandRate;
 
             if (operator.equals("+")) {
-                answerInDollars =  firstOperandInDollars + secondOperandInDollars;
-                double answerInTargetCurrency = answerInDollars * targetRate;
-                displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
+                answerInTargetCurrency =  firstOperandInTargetCurrency + secondOperandInTargetCurrency;
             }
             else if (operator.equals("-")){
-                answerInDollars =  firstOperandInDollars - secondOperandInDollars;
-                double answerInTargetCurrency = answerInDollars * targetRate;
-                displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
+                answerInTargetCurrency =  firstOperandInTargetCurrency - secondOperandInTargetCurrency;
             }
             else if (operator.equals("/")) {
-                answerInDollars =  firstOperandInDollars / secondOperandInDollars;
-                double answerInTargetCurrency = answerInDollars;
-                displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
+                answerInTargetCurrency =  firstOperandInTargetCurrency / secondOperandInTargetCurrency;
             }
             else if (operator.equals("x")){
-                float multiply =  firstOperand * secondOperand;
-                answerInDollars = multiply/targetRate;
-                double answerInTargetCurrency = answerInDollars * targetRate;
-                displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
+                answerInTargetCurrency =  firstOperandInTargetCurrency * secondOperandInTargetCurrency;
             }
-            else if (operator.equals("")){
-                answerInDollars = secondOperandInDollars;
+            else {
+                answerInTargetCurrency = secondOperandInTargetCurrency;
             }
+            displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
         } catch (Exception e) {
             e.printStackTrace();
         }
