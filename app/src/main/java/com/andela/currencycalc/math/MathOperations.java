@@ -1,5 +1,7 @@
 package com.andela.currencycalc.math;
 
+import android.text.Html;
+
 import com.andela.currencycalc.exchangesRates.ExchangeRateDownloader;
 import com.andela.currencycalc.buttons.ButtonHandler;
 import com.andela.currencycalc.constants.Constants;
@@ -66,7 +68,7 @@ public class MathOperations {
                 answerInTargetCurrency =  firstOperandInTargetCurrency - secondOperandInTargetCurrency;
             }
             else if (operator.equals("/")) {
-                answerInTargetCurrency =  firstOperandInTargetCurrency / secondOperandInTargetCurrency;
+                answerInTargetCurrency =  (firstOperandInTargetCurrency / secondOperandInTargetCurrency);
             }
             else if (operator.equals("x")){
                 answerInTargetCurrency =  firstOperandInTargetCurrency * secondOperandInTargetCurrency;
@@ -74,7 +76,7 @@ public class MathOperations {
             else {
                 answerInTargetCurrency = secondOperandInTargetCurrency;
             }
-            displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
+            displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency) + answerCurrency);
         } catch (Exception e) {
             e.printStackTrace();
         }
