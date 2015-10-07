@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="left|right"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,9 +27,10 @@
         android:orientation="horizontal">
 
         <Spinner
+            android:background="@drawable/ps__button_digg"
             android:id="@+id/spinner"
             android:layout_width="98dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:entries="@array/currencies" />
 
         <EditText
@@ -57,7 +61,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="1"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_dropbox"
@@ -68,7 +73,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="2"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_dropbox"
@@ -79,7 +85,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="3"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_tumblr"
@@ -90,7 +97,8 @@
             android:onClick="operatorButtonClickHandler"
             android:text="x"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -108,7 +116,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="4"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_dropbox"
@@ -119,7 +128,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="5"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp" />
 
         <Button
             android:background="@drawable/ps__button_dropbox"
@@ -130,7 +140,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="6"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_tumblr"
@@ -141,7 +152,8 @@
             android:onClick="operatorButtonClickHandler"
             android:text="/"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -159,7 +171,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="7"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_dropbox"
@@ -170,7 +183,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="8"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_dropbox"
@@ -181,7 +195,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="9"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_tumblr"
@@ -192,7 +207,8 @@
             android:onClick="operatorButtonClickHandler"
             android:text="+"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -210,7 +226,8 @@
             android:onClick="numberButtonClickHandler"
             android:text="0"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
 
         <Button
@@ -222,7 +239,8 @@
             android:onClick="decimalButtonClickHandler"
             android:text="."
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_youtube"
@@ -232,7 +250,8 @@
             android:onClick="deleteButtonClickHandler"
             android:text="C"
             android:textSize="30dp"
-            android:id="@+id/button" />
+            android:id="@+id/button"
+            android:layout_margin="5dp"/>
 
         <Button
             android:background="@drawable/ps__button_tumblr"
@@ -243,7 +262,8 @@
             android:onClick="operatorButtonClickHandler"
             android:text="-"
             android:textColor="#000000"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
 
@@ -254,10 +274,12 @@
         android:orientation="horizontal">
 
         <Spinner
+            android:background="@drawable/ps__button_digg"
             android:id="@+id/targetCurrency"
             android:layout_width="98dp"
-            android:layout_height="match_parent"
-            android:entries="@array/currencies" />
+            android:layout_height="44dp"
+            android:entries="@array/currencies"
+            android:layout_margin="0dp"/>
 
         <Button
             android:background="@drawable/ps__button_dropbox"
@@ -269,7 +291,8 @@
             android:textColor="#000000"
             android:textSize="40dp"
             android:textAlignment="center"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
 </LinearLayout>
