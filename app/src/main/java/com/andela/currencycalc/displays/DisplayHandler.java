@@ -10,11 +10,13 @@ public class DisplayHandler {
 
     private EditText display;
     private TextView secondDisplay;
+    private TextView resultCurrency;
     private boolean startNewNumber = true;
 
     public DisplayHandler(Activity activity){
         display = (EditText)activity.findViewById(R.id.display);
         secondDisplay = (TextView)activity.findViewById(R.id.recorder);
+        resultCurrency = (TextView)activity.findViewById(R.id.result_currency);
     }
 
     public void addToDisplay(String userInput){
@@ -62,6 +64,10 @@ public class DisplayHandler {
     }
 
     public void addToSecondDisplayAgain(float secondOperand, String s) {
-        secondDisplay.append(" "+secondOperand+s);
+        secondDisplay.append(" " + secondOperand + s);
+    }
+
+    public void addToResultCurrencyView(String s){
+        resultCurrency.setText("Target Currency Is : " + s);
     }
 }

@@ -50,6 +50,7 @@ public class MathOperations {
         displayHandler.addToSecondDisplayAgain(secondOperand, secondOperandCurrency);
 
         answerCurrency = buttonHandler.getAnswerSpinner().getSelectedItem().toString();
+        displayHandler.addToResultCurrencyView(answerCurrency);
 
         try {
             Rates rates = new Rates();
@@ -76,7 +77,7 @@ public class MathOperations {
             else {
                 answerInTargetCurrency = secondOperandInTargetCurrency;
             }
-            displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency) + answerCurrency);
+            displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
         } catch (Exception e) {
             e.printStackTrace();
         }
