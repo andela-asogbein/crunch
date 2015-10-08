@@ -27,6 +27,8 @@ public class MathOperations {
     JSONObject jsonObject;
     JSONObject ratesObject;
 
+    boolean operatorState = false;
+
     private double answerInTargetCurrency = 0d;
     public MathOperations(DisplayHandler d, ButtonHandler b){
         displayHandler = d;
@@ -45,13 +47,18 @@ public class MathOperations {
     }
 
     public void setOperator(String operatorCharacter){
-            firstOperand = Float.parseFloat(displayHandler.getDisplay().getText().toString());
-            firstOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
+        if(operatorState == true){
+            calculate();
+        }
+        firstOperand = Float.parseFloat(displayHandler.getDisplay().getText().toString());
+        firstOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
 
-            operator = operatorCharacter;
+        operator = operatorCharacter;
 
-            displayHandler.setStartNewNumber(true);
-            displayHandler.addToSecondDisplay(firstOperandCurrency, firstOperand, operator);
+        displayHandler.setStartNewNumber(true);
+        displayHandler.addToSecondDisplay(firstOperandCurrency, firstOperand, operator);
+
+        operatorState = true;
     }
 
     public void calculate() {
@@ -91,6 +98,7 @@ public class MathOperations {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        operatorState = false;
     }
 
     public void setFirstOperand(float f) {
