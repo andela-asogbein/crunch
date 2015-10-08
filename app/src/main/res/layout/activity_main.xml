@@ -35,21 +35,23 @@
         <Spinner
             android:background="@drawable/operation_border"
             android:id="@+id/spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:entries="@array/currencies" />
+            android:entries="@array/currencies"
+            android:layout_weight="1"/>
 
         <EditText
             android:background="@color/background_display"
             android:id="@+id/display"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.28"
+            android:layout_weight="3"
             android:cursorVisible="false"
             android:editable="false"
             android:gravity="right"
             android:textSize="30dp"
-            android:text="0" >
+            android:text="0"
+            >
         </EditText>
     </LinearLayout>
 
@@ -267,21 +269,22 @@
         <Spinner
             android:background="@drawable/operation_border"
             android:id="@+id/targetCurrency"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:entries="@array/currencies" />
+            android:entries="@array/currencies"
+            android:layout_weight="1"/>
 
         <Button
             android:background="@drawable/layoutboader"
             android:id="@+id/buttonEquals"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:onClick="equalsButtonClickHandler"
             android:text="="
             android:textColor="#000000"
             android:textSize="40dp"
             android:textAlignment="center"
-            android:padding="5dp" />
+            android:layout_weight="3"/>
     </LinearLayout>
 
 </LinearLayout>

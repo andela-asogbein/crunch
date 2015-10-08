@@ -68,6 +68,6 @@ public class DisplayHandler {
     }
 
     public void addToResultCurrencyView(String s){
-        resultCurrency.setText("Target Currency is : " + s);
+        resultCurrency.setText("RESULT CURRENCY IS : " + s);
     }
 }
