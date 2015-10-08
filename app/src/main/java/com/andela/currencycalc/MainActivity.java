@@ -3,15 +3,19 @@ package com.andela.currencycalc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.andela.currencycalc.buttons.ButtonHandler;
+import com.andela.currencycalc.constants.Constants;
+import com.andela.currencycalc.exchangesRates.ExchangeRateDownloader;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     ButtonHandler buttonHandler;
+    ExchangeRateDownloader ex = new ExchangeRateDownloader();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         buttonHandler = new ButtonHandler(this);
+
+//        try {
+//            new ExchangeRateDownloader().execute(Constants.exchangeRatesUrl).get();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void numberButtonClickHandler(View v){

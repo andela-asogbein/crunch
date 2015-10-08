@@ -1,12 +1,9 @@
 package com.andela.currencycalc.math;
 
-import android.text.Html;
-
 import com.andela.currencycalc.exchangesRates.ExchangeRateDownloader;
 import com.andela.currencycalc.buttons.ButtonHandler;
 import com.andela.currencycalc.constants.Constants;
 import com.andela.currencycalc.displays.DisplayHandler;
-import com.andela.currencycalc.exchangesRates.Rates;
 
 import org.json.JSONObject;
 
@@ -26,21 +23,35 @@ public class MathOperations {
     private DisplayHandler displayHandler;
     private ButtonHandler buttonHandler;
 
-    private double answerInTargetCurrency = 0d;
+    String json;
+    JSONObject jsonObject;
+    JSONObject ratesObject;
 
+    private double answerInTargetCurrency = 0d;
     public MathOperations(DisplayHandler d, ButtonHandler b){
         displayHandler = d;
         buttonHandler = b;
+        fetchRates();
+    }
+
+    public void fetchRates(){
+        try {
+            json = new ExchangeRateDownloader().execute(Constants.exchangeRatesUrl).get();
+            jsonObject = new JSONObject(json);
+            ratesObject = jsonObject.getJSONObject("rates");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setOperator(String operatorCharacter){
-        firstOperand = Float.parseFloat(displayHandler.getDisplay().getText().toString());
-        firstOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
+            firstOperand = Float.parseFloat(displayHandler.getDisplay().getText().toString());
+            firstOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
 
-        operator = operatorCharacter;
+            operator = operatorCharacter;
 
-        displayHandler.setStartNewNumber(true);
-        displayHandler.addToSecondDisplay(firstOperandCurrency, firstOperand, operator);
+            displayHandler.setStartNewNumber(true);
+            displayHandler.addToSecondDisplay(firstOperandCurrency, firstOperand, operator);
     }
 
     public void calculate() {
@@ -53,13 +64,12 @@ public class MathOperations {
         displayHandler.addToResultCurrencyView(answerCurrency);
 
         try {
-            Rates rates = new Rates();
-            double targetRate =  rates.fetchRates().getDouble(answerCurrency);
+            double targetRate =  ratesObject.getDouble(answerCurrency);
 
-            double firstOperandRate =  rates.fetchRates().getDouble(firstOperandCurrency);
+            double firstOperandRate =  ratesObject.getDouble(firstOperandCurrency);
             double firstOperandInTargetCurrency = (firstOperand*targetRate)/firstOperandRate;
 
-            double secondOperandRate =  rates.fetchRates().getDouble(secondOperandCurrency);
+            double secondOperandRate =  ratesObject.getDouble(secondOperandCurrency);
             double secondOperandInTargetCurrency = (secondOperand*targetRate)/secondOperandRate;
 
             if (operator.equals("+")) {
