@@ -46,7 +46,6 @@ public class DisplayHandler {
         display.setText("");
     }
 
-
     public EditText getDisplay(){
         return display;
     }

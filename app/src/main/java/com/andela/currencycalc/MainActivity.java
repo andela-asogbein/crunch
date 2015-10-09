@@ -23,12 +23,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         buttonHandler = new ButtonHandler(this);
-
-//        try {
-//            new ExchangeRateDownloader().execute(Constants.exchangeRatesUrl).get();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void numberButtonClickHandler(View v){
