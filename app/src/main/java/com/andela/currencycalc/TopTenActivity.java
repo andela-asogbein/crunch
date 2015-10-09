@@ -48,7 +48,7 @@ public class TopTenActivity extends AppCompatActivity {
             Collections.sort(currencies);
 
             ArrayList<String> currencyNames = new ArrayList<String>();
-            for(int i = 0; i<10; i++){
+            for(int i = 0; i<11; i++){
                 currencyNames.add(currencies.get(i).getCurrencyName());
             }
 
