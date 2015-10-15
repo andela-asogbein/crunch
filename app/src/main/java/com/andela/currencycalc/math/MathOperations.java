@@ -4,6 +4,7 @@ import com.andela.currencycalc.exchangesRates.ExchangeRateDownloader;
 import com.andela.currencycalc.buttons.ButtonHandler;
 import com.andela.currencycalc.constants.Constants;
 import com.andela.currencycalc.displays.DisplayHandler;
+import com.andela.currencycalc.exchangesRates.Rates;
 
 import org.json.JSONObject;
 
@@ -23,9 +24,7 @@ public class MathOperations {
     private DisplayHandler displayHandler;
     private ButtonHandler buttonHandler;
 
-    String json;
-    JSONObject jsonObject;
-    JSONObject ratesObject;
+    Rates rates;
 
     boolean operatorState = false;
 
@@ -33,17 +32,7 @@ public class MathOperations {
     public MathOperations(DisplayHandler d, ButtonHandler b){
         displayHandler = d;
         buttonHandler = b;
-        fetchRates();
-    }
-
-    public void fetchRates(){
-        try {
-            json = new ExchangeRateDownloader().execute(Constants.exchangeRatesUrl).get();
-            jsonObject = new JSONObject(json);
-            ratesObject = jsonObject.getJSONObject("rates");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        rates = new Rates();
     }
 
     public void setOperator(String operatorCharacter){
@@ -65,18 +54,20 @@ public class MathOperations {
         secondOperand = Float.parseFloat(displayHandler.getDisplay().getText().toString());
         secondOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
 
-        displayHandler.addToSecondDisplayAgain(secondOperand, secondOperandCurrency);
-
         answerCurrency = buttonHandler.getAnswerSpinner().getSelectedItem().toString();
         displayHandler.addToResultCurrencyView(answerCurrency);
 
         try {
-            double targetRate =  ratesObject.getDouble(answerCurrency);
+            double targetRate = rates.getRateOfCurrency(answerCurrency);
+            double firstOperandInTargetCurrency = 0d;
 
-            double firstOperandRate =  ratesObject.getDouble(firstOperandCurrency);
-            double firstOperandInTargetCurrency = (firstOperand*targetRate)/firstOperandRate;
+            if(firstOperandCurrency != null){
+                double firstOperandRate = rates.getRateOfCurrency(firstOperandCurrency);
+                firstOperandInTargetCurrency = (firstOperand*targetRate)/firstOperandRate;
+                displayHandler.addToSecondDisplayAgain(secondOperand, secondOperandCurrency);
+            }
 
-            double secondOperandRate =  ratesObject.getDouble(secondOperandCurrency);
+            double secondOperandRate = rates.getRateOfCurrency(secondOperandCurrency);
             double secondOperandInTargetCurrency = (secondOperand*targetRate)/secondOperandRate;
 
             if (operator.equals("+")) {
@@ -93,10 +84,12 @@ public class MathOperations {
             }
             else {
                 answerInTargetCurrency = secondOperandInTargetCurrency;
+                displayHandler.addSingleValueToDisplay(secondOperand, secondOperandCurrency);
             }
             displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
         } catch (Exception e) {
             e.printStackTrace();
+            displayHandler.setDisplay("No Internet Connection");
         }
         operatorState = false;
     }
@@ -107,5 +100,9 @@ public class MathOperations {
 
     public void setSecondOperand(float f) {
         this.secondOperand = f;
+    }
+
+    public void resetOperator(){
+        operator = "";
     }
 }

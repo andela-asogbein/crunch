@@ -18,9 +18,6 @@ import java.net.URL;
  */
 public class ExchangeRateDownloader extends AsyncTask<String, Void, String> {
 
-    JSONObject jsonObject;
-    JSONObject ratesObject;
-
     @Override
     protected String doInBackground(String... url) {
         return getRatesJson(url[0]);
@@ -57,16 +54,4 @@ public class ExchangeRateDownloader extends AsyncTask<String, Void, String> {
         }
         return stringBuffer.toString();
     }
-
-//    @Override
-//    protected void onPostExecute(String s) {
-//        String json = s;
-//        try {
-//            jsonObject = new JSONObject(json);
-//            ratesObject = jsonObject.getJSONObject("rates");
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
 }

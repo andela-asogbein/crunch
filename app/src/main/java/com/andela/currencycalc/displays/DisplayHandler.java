@@ -67,6 +67,10 @@ public class DisplayHandler {
     }
 
     public void addToResultCurrencyView(String s){
-        resultCurrency.setText("RESULT CURRENCY IS : " + s);
+        resultCurrency.setText(s);
+    }
+
+    public void addSingleValueToDisplay(float f, String s) {
+        secondDisplay.setText(f+s);
     }
 }

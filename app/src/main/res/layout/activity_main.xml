@@ -2,43 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="left|right"
+    android:gravity="bottom"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:background="#ee8112"
+        android:layout_weight="1">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:entries="@array/currencies"
+            android:layout_weight="2"
+            android:layout_marginRight="10dp"/>
 
         <TextView
-            android:background="@color/background_display"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text=">>"
+            android:textAlignment="center"
+            android:textSize="50dp"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:id="@+id/targetCurrency"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:entries="@array/currencies"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@color/background_display">
+
+        <TextView
             android:id="@+id/recorder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="15dp"/>
+            android:layout_height="0dp"
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:layout_weight="2"/>
 
         <TextView
-            android:background="@color/background_display"
+            android:text="NGN"
             android:id="@+id/result_currency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"/>
+            android:layout_width="58dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:layout_gravity="right"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:background="@drawable/operation_border"
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:entries="@array/currencies"
-            android:layout_weight="1"/>
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <EditText
             android:background="@color/background_display"
@@ -58,8 +89,9 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
+        android:layout_height="00dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <Button
             android:background="@drawable/operand_border"
@@ -109,8 +141,9 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <Button
             android:background="@drawable/operand_border"
@@ -160,8 +193,8 @@
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1" android:orientation="horizontal">
 
         <Button
             android:background="@drawable/operand_border"
@@ -211,8 +244,9 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <Button
             android:background="@drawable/operand_border"
@@ -263,19 +297,12 @@
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Spinner
-            android:background="@drawable/operation_border"
-            android:id="@+id/targetCurrency"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:entries="@array/currencies"
-            android:layout_weight="1"/>
-
         <Button
-            android:background="@drawable/layoutboader"
+            android:background="@drawable/listcolor"
             android:id="@+id/buttonEquals"
             android:layout_width="0dp"
             android:layout_height="match_parent"
