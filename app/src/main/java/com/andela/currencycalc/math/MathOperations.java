@@ -55,7 +55,7 @@ public class MathOperations {
         secondOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
 
         answerCurrency = buttonHandler.getAnswerSpinner().getSelectedItem().toString();
-        displayHandler.addToResultCurrencyView(answerCurrency);
+        //displayHandler.addToResultCurrencyView(answerCurrency);
 
         try {
             double targetRate = rates.getRateOfCurrency(answerCurrency);

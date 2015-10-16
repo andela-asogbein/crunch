@@ -16,7 +16,7 @@ public class DisplayHandler {
     public DisplayHandler(Activity activity){
         display = (EditText)activity.findViewById(R.id.display);
         secondDisplay = (TextView)activity.findViewById(R.id.recorder);
-        resultCurrency = (TextView)activity.findViewById(R.id.result_currency);
+//        resultCurrency = (TextView)activity.findViewById(R.id.result_currency);
     }
 
     public void addToDisplay(String userInput){
