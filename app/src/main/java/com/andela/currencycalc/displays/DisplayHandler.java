@@ -16,7 +16,7 @@ public class DisplayHandler {
     public DisplayHandler(Activity activity){
         display = (EditText)activity.findViewById(R.id.display);
         secondDisplay = (TextView)activity.findViewById(R.id.recorder);
-//        resultCurrency = (TextView)activity.findViewById(R.id.result_currency);
+        //resultCurrency = (TextView)activity.findViewById(R.id.result_currency);
     }
 
     public void addToDisplay(String userInput){
@@ -66,8 +66,16 @@ public class DisplayHandler {
         secondDisplay.append(" " + secondOperand + s);
     }
 
+    public void clearSecondDisplay(){
+        secondDisplay.setText("");
+    }
+
     public void addToResultCurrencyView(String s){
         resultCurrency.setText(s);
+    }
+
+    public void addToSecondDisplayNew(String currency, float f, String operator){
+        secondDisplay.append(f + currency + " " + operator);
     }
 
     public void addSingleValueToDisplay(float f, String s) {

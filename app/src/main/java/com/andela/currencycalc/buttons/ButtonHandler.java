@@ -54,7 +54,7 @@ public class ButtonHandler {
     }
 
     public void equalsButtonClicked(){
-        mathOperations.calculate();
+        mathOperations.equals();
         displayHandler.setStartNewNumber(true);
         mathOperations.setFirstOperand(0f);
         mathOperations.setSecondOperand(0f);

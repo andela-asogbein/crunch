@@ -1,16 +1,10 @@
 package com.andela.currencycalc.math;
 
-import com.andela.currencycalc.exchangesRates.ExchangeRateDownloader;
 import com.andela.currencycalc.buttons.ButtonHandler;
-import com.andela.currencycalc.constants.Constants;
 import com.andela.currencycalc.displays.DisplayHandler;
 import com.andela.currencycalc.exchangesRates.Rates;
 
-import org.json.JSONObject;
 
-/**
- * Created by JIBOLA on 28-Sep-15.
- */
 public class MathOperations {
 
     private float firstOperand = 0f;
@@ -27,6 +21,7 @@ public class MathOperations {
     Rates rates;
 
     boolean operatorState = false;
+    boolean s = false;
 
     private double answerInTargetCurrency = 0d;
     public MathOperations(DisplayHandler d, ButtonHandler b){
@@ -36,6 +31,11 @@ public class MathOperations {
     }
 
     public void setOperator(String operatorCharacter){
+        if(operatorState == false){
+            displayHandler.clearSecondDisplay();
+        }
+        displayHandler.addToSecondDisplayNew(buttonHandler.getOperandSpinner().getSelectedItem().toString(),
+                Float.parseFloat(displayHandler.getDisplay().getText().toString()), operatorCharacter);
         if(operatorState == true){
             calculate();
         }
@@ -45,9 +45,14 @@ public class MathOperations {
         operator = operatorCharacter;
 
         displayHandler.setStartNewNumber(true);
-        displayHandler.addToSecondDisplay(firstOperandCurrency, firstOperand, operator);
-
         operatorState = true;
+    }
+
+    public void equals() {
+        displayHandler.addToSecondDisplayNew(buttonHandler.getOperandSpinner().getSelectedItem().toString(),
+                Float.parseFloat(displayHandler.getDisplay().getText().toString()), "");
+
+        calculate();
     }
 
     public void calculate() {
@@ -55,7 +60,6 @@ public class MathOperations {
         secondOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
 
         answerCurrency = buttonHandler.getAnswerSpinner().getSelectedItem().toString();
-        //displayHandler.addToResultCurrencyView(answerCurrency);
 
         try {
             double targetRate = rates.getRateOfCurrency(answerCurrency);
@@ -64,7 +68,6 @@ public class MathOperations {
             if(firstOperandCurrency != null){
                 double firstOperandRate = rates.getRateOfCurrency(firstOperandCurrency);
                 firstOperandInTargetCurrency = (firstOperand*targetRate)/firstOperandRate;
-                displayHandler.addToSecondDisplayAgain(secondOperand, secondOperandCurrency);
             }
 
             double secondOperandRate = rates.getRateOfCurrency(secondOperandCurrency);
@@ -86,6 +89,7 @@ public class MathOperations {
                 answerInTargetCurrency = secondOperandInTargetCurrency;
                 displayHandler.addSingleValueToDisplay(secondOperand, secondOperandCurrency);
             }
+
             displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
         } catch (Exception e) {
             e.printStackTrace();
