@@ -18,12 +18,12 @@ public class MathOperations {
     private DisplayHandler displayHandler;
     private ButtonHandler buttonHandler;
 
-    Rates rates;
+    private Rates rates;
 
-    boolean operatorState = false;
-    boolean s = false;
+    private boolean operatorState = false;
 
     private double answerInTargetCurrency = 0d;
+
     public MathOperations(DisplayHandler d, ButtonHandler b){
         displayHandler = d;
         buttonHandler = b;
@@ -34,7 +34,7 @@ public class MathOperations {
         if(operatorState == false){
             displayHandler.clearSecondDisplay();
         }
-        displayHandler.addToSecondDisplayNew(buttonHandler.getOperandSpinner().getSelectedItem().toString(),
+        displayHandler.addToSecondDisplay(buttonHandler.getOperandSpinner().getSelectedItem().toString(),
                 Float.parseFloat(displayHandler.getDisplay().getText().toString()), operatorCharacter);
         if(operatorState == true){
             calculate();
@@ -49,7 +49,7 @@ public class MathOperations {
     }
 
     public void equals() {
-        displayHandler.addToSecondDisplayNew(buttonHandler.getOperandSpinner().getSelectedItem().toString(),
+        displayHandler.addToSecondDisplay(buttonHandler.getOperandSpinner().getSelectedItem().toString(),
                 Float.parseFloat(displayHandler.getDisplay().getText().toString()), "");
 
         calculate();
@@ -89,7 +89,6 @@ public class MathOperations {
                 answerInTargetCurrency = secondOperandInTargetCurrency;
                 displayHandler.addSingleValueToDisplay(secondOperand, secondOperandCurrency);
             }
-
             displayHandler.setDisplay(String.format("%.2f", answerInTargetCurrency));
         } catch (Exception e) {
             e.printStackTrace();

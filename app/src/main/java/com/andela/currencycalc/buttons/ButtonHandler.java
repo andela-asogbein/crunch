@@ -48,8 +48,6 @@ public class ButtonHandler {
     }
 
     public void deleteButtonClicked(int viewId){
-        Button button =  (Button)activity.findViewById(viewId);
-        String buttonText = button.getText().toString();
         displayHandler.editDisplay();
     }
 

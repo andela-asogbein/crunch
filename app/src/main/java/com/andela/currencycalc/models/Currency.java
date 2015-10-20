@@ -1,8 +1,5 @@
 package com.andela.currencycalc.models;
 
-/**
- * Created by JIBOLA on 03-Oct-15.
- */
 public class Currency implements Comparable{
     private String currencyName;
     private double currencyRate;

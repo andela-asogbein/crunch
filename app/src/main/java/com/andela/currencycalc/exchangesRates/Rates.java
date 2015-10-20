@@ -5,9 +5,6 @@ import com.andela.currencycalc.constants.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by JIBOLA on 15-Oct-15.
- */
 public class Rates implements RatesInterface{
     private String json;
     private JSONObject jsonObject;

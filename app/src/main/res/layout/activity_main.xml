@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="Target Currency"
                 android:textColor="#ffffff"
-                android:textStyle="italic"/>
+                android:textStyle="italic"
+                android:layout_marginLeft="15dp"/>
 
             <Spinner
                 android:layout_marginLeft="10dp"

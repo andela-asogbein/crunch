@@ -15,7 +15,6 @@ import com.andela.currencycalc.exchangesRates.ExchangeRateDownloader;
 public class MainActivity extends AppCompatActivity{
 
     ButtonHandler buttonHandler;
-    ExchangeRateDownloader ex = new ExchangeRateDownloader();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
