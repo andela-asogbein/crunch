@@ -22,6 +22,8 @@ public class ButtonHandler {
     private ArrayAdapter<CharSequence> adapter;
     private ArrayAdapter<CharSequence> adapter2;
 
+    private boolean clearSecondDisplay = false;
+
     public ButtonHandler(Activity activity){
         this.activity = activity;
         displayHandler = new DisplayHandler(activity);
@@ -30,6 +32,10 @@ public class ButtonHandler {
     }
 
     public void numberButtonClicked(int viewId) {
+        if(clearSecondDisplay){
+            displayHandler.clearSecondDisplay();
+            clearSecondDisplay = false;
+        }
         Button button =  (Button)activity.findViewById(viewId);
         String buttonText = button.getText().toString();
         displayHandler.addToDisplay(buttonText);
@@ -57,6 +63,7 @@ public class ButtonHandler {
         mathOperations.setFirstOperand(0f);
         mathOperations.setSecondOperand(0f);
         mathOperations.resetOperator();
+        clearSecondDisplay = true;
     }
 
     public Spinner getOperandSpinner() {

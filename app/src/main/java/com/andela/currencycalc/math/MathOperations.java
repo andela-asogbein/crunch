@@ -58,7 +58,6 @@ public class MathOperations {
     public void calculate() {
         secondOperand = Float.parseFloat(displayHandler.getDisplay().getText().toString());
         secondOperandCurrency = buttonHandler.getOperandSpinner().getSelectedItem().toString();
-
         answerCurrency = buttonHandler.getAnswerSpinner().getSelectedItem().toString();
 
         try {
