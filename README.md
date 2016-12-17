@@ -1,1 +1,5 @@
-A currency calculator app for android. Add, subtract, divide and multiply numbers in a specific currency and get an accurate answer from an API. E.g 3USD + 4NGN = ?GBP ...Check out app to find out :-)
+### An Android currency converter and calculator.
+
+### Import into Android Studio and run on an Android device or Emulator.
+
+### Conversion rates are from the [Open Exchange Rates](https://openexchangerates.org/) API
